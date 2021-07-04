@@ -30,12 +30,19 @@ def score(word, f):
                         'o':15, 'p':16, 'q':17, 'r':18, 's':19, 't':20, 
                             'u':21, 'v':22, 'w':23, 'x':24, 'y':25, 'z':26}
     score_word = []
-    word.lower()
+    word = word.lower()
     for letter_place in range(len(word)):
         scores = letter_place * eng_char_num[word[letter_place]]
         score_word.append(scores)
-    score_word.sort(reverse=True)
-    return f(score_word[0], score_word[1])
-def f(x, y):
-    return x+y
+    highest = max(score_word)
+    while True:
+        if highest in score_word:
+            score_word.remove(highest)
+        else:
+            break
+    second_highest = max(score_word)
+    return f(highest, second_highest)
+def f(a, b):
+    return a+b
     
+        
