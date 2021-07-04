@@ -34,8 +34,8 @@ def score(word, f):
     for letter_place in range(len(word)):
         scores = letter_place * eng_char_num[word[letter_place]]
         score_word.append(scores)
-    highest = max(score_word)
-    score_word.remove(highest)
-    second_highest = max(score_word)
-    return f(highest, second_highest)
+    score_word.sort(reverse=True)
+    return f(score_word[0], score_word[1])
+def f(x, y):
+    return x+y
     
