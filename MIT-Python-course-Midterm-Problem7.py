@@ -31,17 +31,23 @@ def score(word, f):
                             'u':21, 'v':22, 'w':23, 'x':24, 'y':25, 'z':26}
     score_word = []
     word = word.lower()
-    for letter_place in range(len(word)):
-        scores = letter_place * eng_char_num[word[letter_place]]
-        score_word.append(scores)
-    highest = max(score_word)
-    while True:
-        if highest in score_word:
+    
+    for letter_place in range(len(word)):                                      #change every character in word to number using dictionary
+        scores = letter_place * eng_char_num[word[letter_place]]               
+        score_word.append(scores)                                              #add scores to the score_word list
+    
+    highest = max(score_word)                                                  #select the highest score in the list  
+    
+    while True:                                                                #since maybe more than one element have the same highest score
+        if highest in score_word:                                              #remove all of them using while loop
             score_word.remove(highest)
+        
         else:
             break
-    second_highest = max(score_word)
+    
+    second_highest = max(score_word)                                           #after the highest score is removed from the list, the second highest can be selected
     return f(highest, second_highest)
+
 def f(a, b):
     return a+b
     
